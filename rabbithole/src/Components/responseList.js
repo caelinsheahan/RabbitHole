@@ -1,9 +1,14 @@
 import React from 'react'
 import response from './response'
-const responseList = ({}) => {
+const responseList = ({response, PlayerOneResponse, PlayerTwoResponse}) => {
   return (
     <div>
-      {response.map(response => <response key={response.id} response={response}/>)}
+    <div className='p1'>
+<p>{PlayerOneResponse}</p>
+    </div>
+    <div className='p2'>
+<p>{PlayerTwoResponse}</p>
+    </div>
     </div>
   )
 }
