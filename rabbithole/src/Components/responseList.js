@@ -1,13 +1,13 @@
 import React from 'react'
-import response from './response'
-const responseList = ({response, PlayerOneResponse, PlayerTwoResponse}) => {
+//import response from './response'
+const responseList = ({displayResponseOne, displayResponseTwo}) => {
   return (
     <div>
     <div className='p1'>
-<p>{PlayerOneResponse}</p>
+{displayResponseOne()}
     </div>
     <div className='p2'>
-<p>{PlayerTwoResponse}</p>
+{displayResponseTwo()}
     </div>
     </div>
   )
