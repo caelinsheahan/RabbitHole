@@ -13,23 +13,24 @@ class App extends Component {
     this.state = {
       name: '',
       body: '',
-      response: ['Player One Resonse', 'Player Two Reponse'],
+      response: ['-Nothing Here-', '-Nothing Here-'],
       votes: [0, 0]
     }
   }
   displayResponseOne = () => {
-    return this.state.response[0]
+    return "Player One: " + this.state.response[0]  + "  Votes: " + this.state.votes[0]
   }
   displayResponseTwo = () => {
-    return this.state.response[1]
+    return "Player Two: " + this.state.response[1] + "  Votes: " + this.state.votes[1]
   }
   nameChange = (e) => {
      this.setState({name: e.target.value});
   }
 
-  PlayerOneResponse = resp => {
+  PlayerOneResponse = () => {
     const response = this.state.response.slice(0)
-    response[0] = resp
+    const body = this.state.body.slice(0)
+    response[0] = body
     this.setState({ response: response })
   }
   PlayerTwoResponse = resp => {
@@ -77,7 +78,7 @@ class App extends Component {
           />
         <div className="container">
           <ResponseList
-            displayResponseOne={this.displayResponseTwo}
+            displayResponseOne={this.displayResponseOne}
             displayResponseTwo={this.displayResponseTwo}
             />
         </div>

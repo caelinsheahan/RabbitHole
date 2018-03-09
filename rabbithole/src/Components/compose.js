@@ -6,19 +6,19 @@ const compose = ({PlayerOneResponse, PlayerTwoResponse, bodyChange, nameChange})
     <form className="form">
       <div className="form-group">
         <div className="col-sm-8 col-sm-offset-2">
-          <h4>Compose Message</h4>
+          <h4>Choose Your Response!</h4>
         </div>
       </div>
       <div className="form-group">
         <label htmlFor="subject" className="col-sm-2 control-label">
-          Name
+          Context
         </label>
         <div className="col-sm-8">
           <input
             type="text"
             className="form-control"
             id="Name"
-            placeholder="Enter a Message Name"
+            placeholder="What is the context?"
             name="name"
             onChange={nameChange}
           />
@@ -26,7 +26,7 @@ const compose = ({PlayerOneResponse, PlayerTwoResponse, bodyChange, nameChange})
       </div>
       <div className="form-group">
         <label for="body" className="col-sm-2 control-label">
-          Message
+          Factoid
         </label>
         <div className="col-sm-8">
           <textarea name="body" id="body" className="form-control" onChange={bodyChange}/>
@@ -34,7 +34,7 @@ const compose = ({PlayerOneResponse, PlayerTwoResponse, bodyChange, nameChange})
       </div>
       <div className="form-group">
         <div className="col-sm-8 col-sm-offset-2">
-          <input className="btn btn-primary" onClick={(e)=>PlayerOneResponse(e)}/>
+          <input value="Submit" className="btn btn-primary" onClick={(e)=>PlayerOneResponse(e)}/>
         </div>
       </div>
     </form>
