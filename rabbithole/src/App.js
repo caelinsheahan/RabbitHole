@@ -4,7 +4,7 @@ import ResponseList from './Components/responseList.js'
 import Compose from './Components/compose.js'
 import Response from './Components/response.js'
 //import search from './Components/search.js'
-import { BrowserRouter as Router, Path, Route, Link } from 'react-router-dom'
+//import { BrowserRouter as Router, Path, Route, Link } from 'react-router-dom'
 import './App.css'
 //const server = ''
 class App extends Component {
