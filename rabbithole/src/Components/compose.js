@@ -34,6 +34,7 @@ const compose = ({PlayerOneResponse, PlayerTwoResponse, bodyChange, nameChange})
       </div>
       <div className="form-group">
         <div className="col-sm-8 col-sm-offset-2">
+          <input value="PlayerOne" className="btn btn-primary" onClick={(e)=>PlayerOneResponse(e)}/>
           <input value="Submit" className="btn btn-primary" onClick={(e)=>PlayerOneResponse(e)}/>
         </div>
       </div>
