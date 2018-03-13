@@ -35,7 +35,8 @@ class App extends Component {
   }
   PlayerTwoResponse = resp => {
     const response = this.state.response.slice(0)
-    response[1] = resp
+    const body = this.state.body.slice(0)
+    response[1] = body
     this.setState({ response: response })
   }
   PlayerOneVoteCount = () => {
