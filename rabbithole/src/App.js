@@ -81,6 +81,8 @@ class App extends Component {
           <ResponseList
             displayResponseOne={this.displayResponseOne}
             displayResponseTwo={this.displayResponseTwo}
+            VotePlayerOne={this.VotePlayerOne}
+            VotePlayerTwo={this.VotePlayerTwo}
             />
         </div>
       </div>
