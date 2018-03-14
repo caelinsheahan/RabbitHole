@@ -26,3 +26,69 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+@media (min-width: 700px){
+  .container{
+    height: 100%;
+    padding: 5px;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-areas:
+      "whitel whitet whiter "
+      "whitel p1 whiter "
+      "whitel p2 whiter "
+      "whitel whiteb whiter ";
+  }
+  .p1{
+    grid-area: p1;
+  }
+  .p2{
+    grid-area: p2;
+  }
+  .whitel{
+    grid-area: whitel;
+  }
+
+  .whitet{
+    grid-area: whitet;
+  }
+
+  .whiter{
+    grid-area: whiter;
+  }
+  .whiteb{
+    grid-area: whiteb;
+  }
+}
+@media (max-width: 350px){
+  .container{
+    height: 100%;
+    padding: 5px;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-areas:
+      "whitet"
+      "p1"
+      "p2"
+      "whiteb";
+  }
+  .p1{
+    grid-area: p1;
+  }
+  .p2{
+    grid-area: p2;
+  }
+  .whitel{
+    grid-area: whitel;
+  }
+
+  .whitet{
+    grid-area: whitet;
+  }
+
+  .whiter{
+    grid-area: whiter;
+  }
+  .whiteb{
+    grid-area: whiteb;
+  }
+}

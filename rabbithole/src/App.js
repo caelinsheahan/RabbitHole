@@ -78,13 +78,18 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Compose
-          nameChange={this.nameChange}
-          bodyChange={this.bodyChange}
-          PlayerOneResponse={this.PlayerOneResponse}
-          PlayerTwoResponse={this.PlayerTwoResponse}
-          />
         <div className="container">
+          <div className="whitet">
+            <Compose
+              nameChange={this.nameChange}
+              bodyChange={this.bodyChange}
+              PlayerOneResponse={this.PlayerOneResponse}
+              PlayerTwoResponse={this.PlayerTwoResponse}
+              />
+          </div>
+          <div className= "whitel"></div>
+          <div className= "whiter"></div>
+          <div className= "whiteb"></div>
           This is the timer value: {this.state.timestamp}
           <ResponseList
             displayResponseOne={this.displayResponseOne}
