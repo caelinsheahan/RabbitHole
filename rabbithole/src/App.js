@@ -5,18 +5,25 @@ import Compose from './Components/compose.js'
 import Response from './Components/response.js'
 //import search from './Components/search.js'
 //import { BrowserRouter as Router, Path, Route, Link } from 'react-router-dom'
+import { subscribeToTimer } from './api';
 import './App.css'
 //const server = ''
+
 class App extends Component {
   constructor(props) {
     super(props)
+    subscribeToTimer((err, timestamp) => this.setState({
+        timestamp }))
     this.state = {
       name: '',
       body: '',
       response: ['-Nothing Here-', '-Nothing Here-'],
-      votes: [0, 0]
+      votes: [0, 0],
+      timestamp: 'no timestamp yet'
     }
   }
+
+
   displayResponseOne = () => {
     return "Player One: " + this.state.response[0]  + "  Votes: " + this.state.votes[0]
   }
@@ -78,6 +85,7 @@ class App extends Component {
           PlayerTwoResponse={this.PlayerTwoResponse}
           />
         <div className="container">
+          This is the timer value: {this.state.timestamp}
           <ResponseList
             displayResponseOne={this.displayResponseOne}
             displayResponseTwo={this.displayResponseTwo}
