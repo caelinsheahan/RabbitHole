@@ -43,13 +43,20 @@ io.on('connection', function(socket){
   socket.on('vote1', function(msg){
     io.emit('vote1', msg);
   });
-});
-
-io.on('connection', function(socket){
   socket.on('vote2', function(msg){
     io.emit('vote2', msg);
   });
+  socket.on('response1', function(msg){
+    io.emit('response1', msg);
+  });
+  socket.on('response2', function(msg){
+    io.emit('resonse2', msg);
+  });
+  socket.on('topic', function(msg){
+    io.emit('topic', msg);
+  });
 });
+
 
 io.listen(process.env.PORT || 8001);
 console.log('listening on port2 ', port2);

@@ -5,11 +5,14 @@ import Compose from './Components/compose.js'
 import Topic from './Components/topic.js'
 //import search from './Components/search.js'
 //import { BrowserRouter as Router, Path, Route, Link } from 'react-router-dom'
-import { subscribeToTimer } from './api'
+//import { subscribeToTimer, sendvote1, sendvote2, readvote2 } from './api'
 import './App.css'
-//const socket = require('socket.io')()
-//const server = ''
-
+import openSocket from 'socket.io-client'
+const socket = openSocket('http://localhost:8001')
+const subscribeToTimer = cb => {
+  socket.on('timer', timestamp => cb(null, timestamp))
+  socket.emit('subscribeToTimer', 1000)
+}
 class App extends Component {
   constructor(props) {
     super(props)
@@ -18,16 +21,15 @@ class App extends Component {
         timestamp
       })
     )
-    // voting1((err, vote1) =>
-    //   this.setState({
-    //     vote1
-    //   })
-    // )
-    // voting2((err, vote2) =>
-    //   this.setState({
-    //     vote2
-    //   })
-    // )
+
+      socket.on('vote1', (msg) => {
+        this.setState({vote1: msg})
+      })
+
+      socket.on('vote2', (msg) => {
+          this.setState({vote2: msg})
+      })
+
     this.state = {
       name: '',
       body: '',
@@ -35,8 +37,8 @@ class App extends Component {
       response2: '',
       vote1: 0,
       vote2: 0,
-      timestamp: 'no timestamp yet',
-      topic: '-nothing here'
+      timestamp: '',
+      topic: ''
     }
   }
 
@@ -94,16 +96,10 @@ class App extends Component {
     return votes2
   }
   VotePlayerOne = () => {
-    let votes1 = this.state.vote1.slice(0)
-    votes1 += 1
-    // socket.emit('vote1', 1)
-    this.setState({ vote1: votes1 })
+  socket.emit('vote1', this.state.vote1 + 1)
   }
   VotePlayerTwo = () => {
-    let votes2 = this.state.vote2.slice(0)
-    votes2 += 1
-    // socket.emit('vote2', 1)
-    this.setState({ vote2: votes2 })
+    socket.emit('vote2', this.state.vote2 + 1)
   }
   bodyChange = e => {
     console.log('bodychange')
