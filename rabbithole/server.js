@@ -50,7 +50,7 @@ io.on('connection', function(socket){
     io.emit('response1', msg);
   });
   socket.on('response2', function(msg){
-    io.emit('resonse2', msg);
+    io.emit('response2', msg);
   });
   socket.on('topic', function(msg){
     io.emit('topic', msg);

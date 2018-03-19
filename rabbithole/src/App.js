@@ -21,7 +21,15 @@ class App extends Component {
         timestamp
       })
     )
-
+    socket.on('topic', (msg) => {
+      this.setState({topic: msg})
+    })
+    socket.on('response1', (msg) => {
+      this.setState({response1: msg})
+    })
+    socket.on('response2', (msg) => {
+      this.setState({response2: msg})
+    })
       socket.on('vote1', (msg) => {
         this.setState({vote1: msg})
       })
@@ -65,10 +73,11 @@ class App extends Component {
     const topic = this.state.name.slice(0)
     response1 = body
     if (topic === '' || this.state.topic === this.state.name) {
-      this.setState({ response1: response1 })
+      socket.emit('response1', body)
       return false
     }
-    this.setState({ response1: response1, topic: topic })
+    socket.emit('response1', body)
+    socket.emit('topic', topic)
   }
   PlayerTwoResponse = resp => {
     let response2 = this.state.response2.slice(0)
@@ -76,10 +85,11 @@ class App extends Component {
     const topic = this.state.name.slice(0)
     response2 = body
     if (topic === '' || this.state.topic === this.state.name) {
-      this.setState({ response2: response2 })
+      socket.emit('response2', body)
       return false
     }
-    this.setState({ response2: response2, topic: topic })
+    socket.emit('response2', body)
+    socket.emit('topic', topic)
   }
   PlayerOneVoteCount = () => {
     let votes1 = this.state.votes.slice(0)
