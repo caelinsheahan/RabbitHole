@@ -8,12 +8,14 @@ const responseList = ({
 }) => {
   return (
     <div>
-      <div className="p1">
-        {displayResponseOne()}
+      <div>
+        <h3>{displayResponseOne()}</h3>
+        <br></br>
         <button onClick={e => VotePlayerOne(e)}>Vote P1</button>
       </div>
-      <div className="p2">
-        {displayResponseTwo()}
+      <div>
+      <h3>{displayResponseTwo()}</h3>
+        <br></br>
         <button onClick={e => VotePlayerTwo(e)}>Vote P2</button>
       </div>
     </div>

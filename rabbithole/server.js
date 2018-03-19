@@ -1,8 +1,30 @@
-//var app = require('express')()
-//var http = require('http').Server(app)
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
+const express = require('express')
+const app = express()
+const bodyParser = require('body-parser')
+const port = process.env.PORT || 8000
+const environment = process.env.NODE_ENV || 'development'
+const config = require('./knexfile')[environment]
+const cookieParser = require('cookie-parser')
+const knex = require('knex')(config)
+const port2 = process.env.PORT || 8001
+
+app.use(cookieParser())
+app.use(bodyParser.json())
+app.use(express.static('public'))
+
+const token = require('./routes/token')
+const users = require('./routes/users')
+
+app.use(token)
+app.use(users)
+
 var io = require('socket.io')()
 var Stopwatch = require('timer-stopwatch');
-var timer = new Stopwatch(60000)
+var timer = new Stopwatch(100000)
 // app.get('/', function(req, res) {
 //   res.sendFile(__dirname + '/index.html')
 // })
@@ -17,19 +39,21 @@ io.on('connection', (client) => {
   });
 });
 
-// io.on('connection', function(socket){
-//   console.log('a user connected');
-//   socket.on('disconnect', function(){
-//     console.log('user disconnected');
-//   });
-// });
-//
-// io.on('connection', function(socket){
-//   socket.on('vote', function(msg){
-//     io.emit('vote', msg);
-//   });
-// });
+io.on('connection', function(socket){
+  socket.on('vote1', function(msg){
+    io.emit('vote1', msg);
+  });
+});
 
-const port = 8000;
-io.listen(port);
-console.log('listening on port ', port);
+io.on('connection', function(socket){
+  socket.on('vote2', function(msg){
+    io.emit('vote2', msg);
+  });
+});
+
+io.listen(process.env.PORT || 8001);
+console.log('listening on port2 ', port2);
+
+app.listen(process.env.PORT || 8000, function(){
+  console.log("listening on port", this.address().port, app.settings.env);
+});
