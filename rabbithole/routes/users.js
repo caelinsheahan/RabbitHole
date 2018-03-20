@@ -6,12 +6,13 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const JWT_KEY = process.env.JWT_KEY
 const router = express.Router()
-router.get('/fake', (req, res, next) => {
-  return res.status(200).send('Home Q2-Project')
+var cors = require('cors')
+router.get('/fake', cors(), (req, res, next) => {
+  return res.status(200).send('Welcome')
 })
 
 
-router.post('/users', (req, res, next) => {
+router.post('/users', cors(), (req, res, next) => {
   const { email, password } = req.body
   if(!email) {
     res.setHeader('content-type', 'text/plain')

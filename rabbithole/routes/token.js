@@ -6,8 +6,9 @@ const knex = require('../knex')
 const jwt = require('jsonwebtoken')
 const JWT_KEY = process.env.JWT_KEY
 const router = express.Router()
+var cors = require('cors')
 
-router.get('/token', (req, res, next) => {
+router.get('/token', cors(), (req, res, next) => {
   jwt.verify(req.cookies.token, JWT_KEY, (err, payload) => {
     if (err) {
       res.send(false)
@@ -17,7 +18,7 @@ router.get('/token', (req, res, next) => {
   })
 })
 
-router.post('/token', (req, res, next) => {
+router.post('/token', cors(), (req, res, next) => {
   const { email, password } = req.body
   if(!email) {
     res.setHeader('content-type', 'text/plain')
@@ -62,7 +63,7 @@ router.post('/token', (req, res, next) => {
     })
 })
 
-router.delete('/token', (req, res, next) => {
+router.delete('/token', cors(), (req, res, next) => {
   res.clearCookie('token')
   res.end()
 })

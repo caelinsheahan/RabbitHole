@@ -11,6 +11,8 @@ const config = require('./knexfile')[environment]
 const cookieParser = require('cookie-parser')
 const knex = require('knex')(config)
 const port2 = process.env.PORT || 8001
+var cors = require('cors')
+
 
 app.use(cookieParser())
 app.use(bodyParser.json())
@@ -24,7 +26,7 @@ app.use(users)
 
 var io = require('socket.io')()
 var Stopwatch = require('timer-stopwatch');
-var timer = new Stopwatch(100000)
+var timer = new Stopwatch(600000)
 // app.get('/', function(req, res) {
 //   res.sendFile(__dirname + '/index.html')
 // })
@@ -56,7 +58,6 @@ io.on('connection', function(socket){
     io.emit('topic', msg);
   });
 });
-
 
 io.listen(process.env.PORT || 8001);
 console.log('listening on port2 ', port2);
