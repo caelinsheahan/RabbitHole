@@ -1,16 +1,38 @@
 html{
   background-image: url(http://i.imgur.com/4auQRpV.jpg);
 }
-button {
-  text-align: center;
-  justify-content: center;
-  background-color: green;
+.btn {
+  background-color: #a3adb8;
 }
+.bg-primary {
+  background-color: #668d3c;
+}
+.bg-success {
+  background-color: #404f24;
+}
+.bg-info {
+  background-color: #d57500;
+}
+.bg-warning {
+  background-color: #8f3b1b;
+}
+.bg-danger {
+  background-color: #b99c6b
+}
+
 h1 {
   text-align: center;
-  font-family: sans-serif;
+  font-family: Impact;
   font-size: 40px;
   color: blue;
+}
+.card-body {
+  text-align: center;
+}
+.card {
+  margin: 2px;
+  border-radius: 10px;
+  padding: 10px;
 }
 .form-actions {
     margin: 0;
@@ -21,7 +43,7 @@ h5 {
   text-align: center;
   font-family: Arial;
   font-size: 20px;
-  color: lime;
+  color: #a3adb8;
 }
 p {
   font-family: sans-serif;

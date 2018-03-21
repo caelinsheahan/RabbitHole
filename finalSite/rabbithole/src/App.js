@@ -21,39 +21,39 @@ class App extends Component {
         timestamp
       })
     )
-    socket.on('topic', (msg) => {
-      this.setState({topic: msg})
+    socket.on('topic', msg => {
+      this.setState({ topic: msg })
     })
-    socket.on('response1', (msg) => {
-      this.setState({response1: msg})
+    socket.on('response1', msg => {
+      this.setState({ response1: msg })
     })
-    socket.on('response2', (msg) => {
-      this.setState({response2: msg})
+    socket.on('response2', msg => {
+      this.setState({ response2: msg })
     })
-    socket.on('response3', (msg) => {
-      this.setState({response3: msg})
+    socket.on('response3', msg => {
+      this.setState({ response3: msg })
     })
-    socket.on('response4', (msg) => {
-      this.setState({response4: msg})
+    socket.on('response4', msg => {
+      this.setState({ response4: msg })
     })
-    socket.on('response5', (msg) => {
-      this.setState({response5: msg})
+    socket.on('response5', msg => {
+      this.setState({ response5: msg })
     })
-      socket.on('vote1', (msg) => {
-        this.setState({vote1: msg})
-      })
-      socket.on('vote2', (msg) => {
-          this.setState({vote2: msg})
-      })
-      socket.on('vote3', (msg) => {
-          this.setState({vote3: msg})
-      })
-      socket.on('vote4', (msg) => {
-          this.setState({vote4: msg})
-      })
-      socket.on('vote5', (msg) => {
-          this.setState({vote5: msg})
-      })
+    socket.on('vote1', msg => {
+      this.setState({ vote1: msg })
+    })
+    socket.on('vote2', msg => {
+      this.setState({ vote2: msg })
+    })
+    socket.on('vote3', msg => {
+      this.setState({ vote3: msg })
+    })
+    socket.on('vote4', msg => {
+      this.setState({ vote4: msg })
+    })
+    socket.on('vote5', msg => {
+      this.setState({ vote5: msg })
+    })
     this.state = {
       name: '',
       body: '',
@@ -78,84 +78,64 @@ class App extends Component {
     return this.state.topic
   }
   displayResponse1 = () => {
-    if(this.state.response1 === '') {
+    if (this.state.response1 === '') {
       return false
     }
-    return (
-      this.state.response1
-    )
+    return this.state.response1
   }
   displayResponse2 = () => {
-    if(this.state.response2 === '') {
+    if (this.state.response2 === '') {
       return false
     }
-    return (
-      this.state.response2
-    )
+    return this.state.response2
   }
   displayResponse3 = () => {
-    if(this.state.response3 === '') {
+    if (this.state.response3 === '') {
       return false
     }
-    return (
-      this.state.response3
-    )
+    return this.state.response3
   }
   displayResponse4 = () => {
-    if(this.state.response4 === '') {
+    if (this.state.response4 === '') {
       return false
     }
-    return (
-      this.state.response4
-    )
+    return this.state.response4
   }
   displayResponse5 = () => {
-    if(this.state.response5 === '') {
+    if (this.state.response5 === '') {
       return false
     }
-    return (
-      this.state.response5
-    )
+    return this.state.response5
   }
   displayVote1 = () => {
-    if(this.state.vote1 === 0) {
+    if (this.state.vote1 === 0) {
       return false
     }
-    return (
-      'Dug ' + this.state.vote1 + ' feet deeper!'
-    )
+    return this.state.vote1 + ' person dug it'
   }
   displayVote2 = () => {
-    if(this.state.vote2 === 0) {
+    if (this.state.vote2 === 0) {
       return false
     }
-    return (
-    'Dug ' + this.state.vote2 + ' feet deeper!'
-    )
+    return this.state.vote2 + ' person dug it'
   }
   displayVote3 = () => {
-    if(this.state.vote3 === 0) {
+    if (this.state.vote3 === 0) {
       return false
     }
-    return (
-      'Dug ' + this.state.vote3 + ' feet deeper!'
-    )
+    return this.state.vote3 + ' person dug it'
   }
   displayVote4 = () => {
-    if(this.state.vote4 === 0) {
+    if (this.state.vote4 === 0) {
       return false
     }
-    return (
-      'Dug ' + this.state.vote4 + ' feet deeper!'
-    )
+    return this.state.vote4 + ' person dug it'
   }
   displayVote5 = () => {
-    if(this.state.vote5 === 0) {
+    if (this.state.vote5 === 0) {
       return false
     }
-    return (
-      'Dug ' + this.state.vote5 + ' feet deeper!'
-    )
+    return this.state.vote5 + ' person dug it'
   }
   nameChange = e => {
     this.setState({ name: e.target.value })
@@ -170,78 +150,78 @@ class App extends Component {
     let submitted = this.state.submitted.slice(0)
     const body = this.state.body.slice(0)
     const topic = this.state.name.slice(0)
-    if(this.state.response1 === '' && submitted === 'false' ) {
+    if (this.state.response1 === '' && submitted === 'false') {
       response1 = body
       if (topic === '' || this.state.topic === this.state.name) {
-        this.setState({submitted: 'true'})
+        this.setState({ submitted: 'true' })
         socket.emit('topic', this.state.topic)
         socket.emit('response1', body)
         return false
+      } else {
+      }
+      this.setState({ submitted: 'true' })
+      socket.emit('response1', body)
+      socket.emit('topic', topic)
+      return false
     }
-    else {}
-    this.setState({submitted: 'true'})
-    socket.emit('response1', body)
-    socket.emit('topic', topic)
-    return false
-    }
-    if(this.state.response2 === '' && submitted === 'false' ) {
+    if (this.state.response2 === '' && submitted === 'false') {
       response2 = body
       if (topic === '' || this.state.topic === this.state.name) {
-        this.setState({submitted: 'true'})
+        this.setState({ submitted: 'true' })
         socket.emit('topic', this.state.topic)
         socket.emit('response1', this.state.response1)
         socket.emit('response2', body)
         return false
+      } else {
+      }
+      this.setState({ submitted: 'true' })
+      socket.emit('response1', this.state.response1)
+      socket.emit('response2', body)
+      socket.emit('topic', this.state.topic)
+      return false
     }
-    else {}
-    this.setState({submitted: 'true'})
-    socket.emit('response1', this.state.response1)
-    socket.emit('response2', body)
-    socket.emit('topic', topic)
-    return false
-    }
-    if(this.state.response3 === '' && submitted === 'false' ) {
+    if (this.state.response3 === '' && submitted === 'false') {
       response3 = body
       if (topic === '' || this.state.topic === this.state.name) {
-        this.setState({submitted: 'true'})
+        this.setState({ submitted: 'true' })
         socket.emit('topic', this.state.topic)
         socket.emit('response1', this.state.response1)
         socket.emit('response2', this.state.response2)
         socket.emit('response3', body)
         return false
+      } else {
+      }
+      this.setState({ submitted: 'true' })
+      socket.emit('response1', this.state.response1)
+      socket.emit('response2', this.state.response2)
+      socket.emit('response3', body)
+      socket.emit('topic', this.state.topic)
+      return false
     }
-    else {}
-    this.setState({submitted: 'true'})
-    socket.emit('response1', this.state.response1)
-    socket.emit('response2', this.state.response2)
-    socket.emit('response3', body)
-    socket.emit('topic', topic)
-    return false
-    }
-    if(this.state.response4 === '' && submitted === 'false' ) {
+    if (this.state.response4 === '' && submitted === 'false') {
       response4 = body
       if (topic === '' || this.state.topic === this.state.name) {
-        this.setState({submitted: 'true'})
+        this.setState({ submitted: 'true' })
         socket.emit('topic', this.state.topic)
         socket.emit('response1', this.state.response1)
         socket.emit('response2', this.state.response2)
         socket.emit('response3', this.state.response3)
         socket.emit('response4', body)
         return false
+      } else {
+      }
+      this.setState({ submitted: 'true' })
+      socket.emit('response1', this.state.response1)
+      socket.emit('response2', this.state.response2)
+      socket.emit('response3', this.state.response3)
+      socket.emit('response4', body)
+      socket.emit('topic', this.state.topic)
+      return false
     }
-    else {}
-    this.setState({submitted: 'true'})
-    socket.emit('response1', this.state.response1)
-    socket.emit('response2', this.state.response2)
-    socket.emit('response3', this.state.response3)
-    socket.emit('response4', body)
-    socket.emit('topic', topic)
-    return false
-    }
-    if(this.state.response5 === '' && submitted === 'false' ) {
+    if (this.state.response5 === '' && submitted === 'false') {
       response2 = body
       if (topic === '' || this.state.topic === this.state.name) {
-        this.setState({submitted: 'true'})
+        this.setState({ submitted: 'true' })
         socket.emit('topic', this.state.topic)
         socket.emit('response1', this.state.response1)
         socket.emit('response2', this.state.response2)
@@ -249,56 +229,56 @@ class App extends Component {
         socket.emit('response4', this.state.response4)
         socket.emit('response5', body)
         return false
-    }
-    else {}
-    this.setState({submitted: 'true'})
-    socket.emit('response1', this.state.response1)
-    socket.emit('response2', this.state.response2)
-    socket.emit('response3', this.state.response3)
-    socket.emit('response4', this.state.response4)
-    socket.emit('response5', body)
-    socket.emit('topic', topic)
-    return false
+      } else {
+      }
+      this.setState({ submitted: 'true' })
+      socket.emit('response1', this.state.response1)
+      socket.emit('response2', this.state.response2)
+      socket.emit('response3', this.state.response3)
+      socket.emit('response4', this.state.response4)
+      socket.emit('response5', body)
+      socket.emit('topic', this.state.topic)
+      return false
     }
   }
   VotePlayer1 = () => {
-  let voted = this.state.voted.slice(0)
-  if(voted === 'true') {
-    return false
-  }
-  this.setState({voted: 'true'})
-  socket.emit('vote1', this.state.vote1 + 1)
+    let voted = this.state.voted.slice(0)
+    if (voted === 'true') {
+      return false
+    }
+    this.setState({ voted: 'true' })
+    socket.emit('vote1', this.state.vote1 + 1)
   }
   VotePlayer2 = () => {
     let voted = this.state.voted.slice(0)
-    if(voted === 'true') {
+    if (voted === 'true') {
       return false
     }
-    this.setState({voted: 'true'})
+    this.setState({ voted: 'true' })
     socket.emit('vote2', this.state.vote2 + 1)
   }
   VotePlayer3 = () => {
     let voted = this.state.voted.slice(0)
-    if(voted === 'true') {
+    if (voted === 'true') {
       return false
     }
-    this.setState({voted: 'true'})
+    this.setState({ voted: 'true' })
     socket.emit('vote3', this.state.vote3 + 1)
   }
   VotePlayer4 = () => {
     let voted = this.state.voted.slice(0)
-    if(voted === 'true') {
+    if (voted === 'true') {
       return false
     }
-    this.setState({voted: 'true'})
+    this.setState({ voted: 'true' })
     socket.emit('vote4', this.state.vote4 + 1)
   }
   VotePlayer5 = () => {
     let voted = this.state.voted.slice(0)
-    if(voted === 'true') {
+    if (voted === 'true') {
       return false
     }
-    this.setState({voted: 'true'})
+    this.setState({ voted: 'true' })
     socket.emit('vote5', this.state.vote5 + 1)
   }
   bodyChange = e => {
@@ -306,42 +286,72 @@ class App extends Component {
     this.setState({ body: e.target.value })
   }
   componentDidMount() {
-      setInterval(() => {
-        if(this.state.response1 !== '' && this.state.response2 === '' && this.state.submitted === 'true') {
-          socket.emit('topic', this.state.topic)
-          socket.emit('response1', this.state.response1)
-        }
-        if(this.state.response2 !== '' && this.state.response3 === '' && this.state.submitted === 'true') {
-          socket.emit('topic', this.state.topic)
-          socket.emit('response1', this.state.response1)
-          socket.emit('response2', this.state.response2)
-        }
-        if(this.state.response3 !== '' && this.state.response4 === '' && this.state.submitted === 'true') {
-          socket.emit('topic', this.state.topic)
-          socket.emit('response1', this.state.response1)
-          socket.emit('response2', this.state.response2)
-          socket.emit('response3', this.state.response3)
-        }
-        if(this.state.response4 !== '' && this.state.response5 === '' && this.state.submitted === 'true') {
-          socket.emit('topic', this.state.topic)
-          socket.emit('response1', this.state.response1)
-          socket.emit('response2', this.state.response2)
-          socket.emit('response3', this.state.response3)
-          socket.emit('response4', this.state.response4)
-        }
-        if(this.state.response5 !== '' && this.state.submitted === 'true') {
-          socket.emit('topic', this.state.topic)
-          socket.emit('response1', this.state.response1)
-          socket.emit('response2', this.state.response2)
-          socket.emit('response3', this.state.response3)
-          socket.emit('response4', this.state.response4)
-          socket.emit('response5', this.state.response5)
-        }
-        else {
-          return false
-        }
-      }, 3000)
- }
+    setInterval(() => {
+      if (
+        this.state.response1 !== '' &&
+        this.state.response2 === '' &&
+        this.state.submitted === 'true'
+      ) {
+        socket.emit('topic', this.state.topic)
+        socket.emit('response1', this.state.response1)
+        socket.emit('vote1', this.state.vote1)
+      }
+      if (
+        this.state.response2 !== '' &&
+        this.state.response3 === '' &&
+        this.state.submitted === 'true'
+      ) {
+        socket.emit('topic', this.state.topic)
+        socket.emit('response1', this.state.response1)
+        socket.emit('vote1', this.state.vote1)
+        socket.emit('response2', this.state.response2)
+        socket.emit('vote2', this.state.vote2)
+      }
+      if (
+        this.state.response3 !== '' &&
+        this.state.response4 === '' &&
+        this.state.submitted === 'true'
+      ) {
+        socket.emit('topic', this.state.topic)
+        socket.emit('response1', this.state.response1)
+        socket.emit('vote1', this.state.vote1)
+        socket.emit('response2', this.state.response2)
+        socket.emit('vote2', this.state.vote2)
+        socket.emit('response3', this.state.response3)
+        socket.emit('vote3', this.state.vote3)
+      }
+      if (
+        this.state.response4 !== '' &&
+        this.state.response5 === '' &&
+        this.state.submitted === 'true'
+      ) {
+        socket.emit('topic', this.state.topic)
+        socket.emit('response1', this.state.response1)
+        socket.emit('vote1', this.state.vote1)
+        socket.emit('response2', this.state.response2)
+        socket.emit('vote2', this.state.vote2)
+        socket.emit('response3', this.state.response3)
+        socket.emit('vote3', this.state.vote3)
+        socket.emit('response4', this.state.response4)
+        socket.emit('vote4', this.state.vote4)
+      }
+      if (this.state.response5 !== '' && this.state.submitted === 'true') {
+        socket.emit('topic', this.state.topic)
+        socket.emit('response1', this.state.response1)
+        socket.emit('vote1', this.state.vote1)
+        socket.emit('response2', this.state.response2)
+        socket.emit('vote2', this.state.vote2)
+        socket.emit('response3', this.state.response3)
+        socket.emit('vote3', this.state.vote3)
+        socket.emit('response4', this.state.response4)
+        socket.emit('vote4', this.state.vote4)
+        socket.emit('response5', this.state.response5)
+        socket.emit('vote5', this.state.vote5)
+      } else {
+        return false
+      }
+    }, 3000)
+  }
   // async componentDidMount() {
   //   const response = await fetch(server)
   //   const json = await response.json()
