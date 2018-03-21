@@ -307,6 +307,28 @@ class App extends Component {
   }
   componentDidMount() {
       setInterval(() => {
+        if(this.state.response1 !== '' && this.state.response2 === '' && this.state.submitted === 'true') {
+          socket.emit('topic', this.state.topic)
+          socket.emit('response1', this.state.response1)
+        }
+        if(this.state.response2 !== '' && this.state.response3 === '' && this.state.submitted === 'true') {
+          socket.emit('topic', this.state.topic)
+          socket.emit('response1', this.state.response1)
+          socket.emit('response2', this.state.response2)
+        }
+        if(this.state.response3 !== '' && this.state.response4 === '' && this.state.submitted === 'true') {
+          socket.emit('topic', this.state.topic)
+          socket.emit('response1', this.state.response1)
+          socket.emit('response2', this.state.response2)
+          socket.emit('response3', this.state.response3)
+        }
+        if(this.state.response4 !== '' && this.state.response5 === '' && this.state.submitted === 'true') {
+          socket.emit('topic', this.state.topic)
+          socket.emit('response1', this.state.response1)
+          socket.emit('response2', this.state.response2)
+          socket.emit('response3', this.state.response3)
+          socket.emit('response4', this.state.response4)
+        }
         if(this.state.response5 !== '' && this.state.submitted === 'true') {
           socket.emit('topic', this.state.topic)
           socket.emit('response1', this.state.response1)
