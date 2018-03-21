@@ -8,19 +8,28 @@ import { BrowserRouter as Router, Path, Route, Link } from 'react-router-dom'
 //import { subscribeToTimer, sendvote1, sendvote2, readvote2 } from './api'
 import './App.css'
 import openSocket from 'socket.io-client'
-const socket = openSocket('https://peaceful-crag-39375.herokuapp.com/')
-const subscribeToTimer = cb => {
-  socket.on('timer', timestamp => cb(null, timestamp))
-  socket.emit('subscribeToTimer', 1000)
-}
+const socket = openSocket('https://aqueous-oasis-28113.herokuapp.com/')
+// const subscribeToTimer = cb => {
+//   socket.on('timer', timestamp => cb(null, timestamp))
+//   socket.emit('subscribeToTimer', 1000)
+// }
 class App extends Component {
   constructor(props) {
     super(props)
-    subscribeToTimer((err, timestamp) =>
-      this.setState({
-        timestamp
-      })
-    )
+    // subscribeToTimer((err, timestamp) =>
+    //   this.setState({
+    //     timestamp
+    //   })
+    // )
+    socket.on('time', msg => {
+      this.setState({ timestamp: msg })
+    })
+    socket.on('submitted', msg => {
+      this.setState({ submitted: msg })
+    })
+    socket.on('voted', msg => {
+      this.setState({ voted: msg })
+    })
     socket.on('topic', msg => {
       this.setState({ topic: msg })
     })
@@ -73,7 +82,43 @@ class App extends Component {
       voted: 'false'
     }
   }
-
+reset = () => {
+  this.setState({
+    response1: '',
+    response2: '',
+    response3: '',
+    response4: '',
+    response5: '',
+    vote1: 0,
+    vote2: 0,
+    vote3: 0,
+    vote4: 0,
+    vote5: 0,
+    submitted: 'false',
+    voted: 'false'
+  })
+  socket.emit('submitted', this.state.submitted)
+  socket.emit('voted', this.state.voted)
+  socket.emit('topic', this.state.topic)
+  socket.emit('response1', this.state.response1)
+  socket.emit('vote1', this.state.vote1)
+  socket.emit('response2', this.state.response2)
+  socket.emit('vote2', this.state.vote2)
+  socket.emit('response3', this.state.response3)
+  socket.emit('vote3', this.state.vote3)
+  socket.emit('response4', this.state.response4)
+  socket.emit('vote4', this.state.vote4)
+  socket.emit('response5', this.state.response5)
+  socket.emit('vote5', this.state.vote5)
+}
+  getTime = () => {
+    return (
+      this.state.timestamp[3] +
+      this.state.timestamp[4] +
+      this.state.timestamp[6] +
+      this.state.timestamp[7]
+    )
+  }
   getTopic = () => {
     return this.state.topic
   }
@@ -150,6 +195,66 @@ class App extends Component {
     let submitted = this.state.submitted.slice(0)
     const body = this.state.body.slice(0)
     const topic = this.state.name.slice(0)
+    if (
+      this.state.timestamp[3] +
+        this.state.timestamp[4] +
+        this.state.timestamp[6] +
+        this.state.timestamp[7] ===
+        '0000' ||
+      this.state.timestamp[3] +
+        this.state.timestamp[4] +
+        this.state.timestamp[6] +
+        this.state.timestamp[7] ===
+        '1000' ||
+      this.state.timestamp[3] +
+        this.state.timestamp[4] +
+        this.state.timestamp[6] +
+        this.state.timestamp[7] ===
+        '2000' ||
+      this.state.timestamp[3] +
+        this.state.timestamp[4] +
+        this.state.timestamp[6] +
+        this.state.timestamp[7] ===
+        '3000' ||
+      this.state.timestamp[3] +
+        this.state.timestamp[4] +
+        this.state.timestamp[6] +
+        this.state.timestamp[7] ===
+        '4000' ||
+      this.state.timestamp[3] +
+        this.state.timestamp[4] +
+        this.state.timestamp[6] +
+        this.state.timestamp[7] ===
+        '5000'
+    ) {
+      this.setState({
+        response1: '',
+        response2: '',
+        response3: '',
+        response4: '',
+        response5: '',
+        vote1: 0,
+        vote2: 0,
+        vote3: 0,
+        vote4: 0,
+        vote5: 0,
+        submitted: 'false',
+        voted: 'false'
+      })
+      socket.emit('submitted', this.state.submitted)
+      socket.emit('voted', this.state.voted)
+      socket.emit('topic', this.state.topic)
+      socket.emit('response1', this.state.response1)
+      socket.emit('vote1', this.state.vote1)
+      socket.emit('response2', this.state.response2)
+      socket.emit('vote2', this.state.vote2)
+      socket.emit('response3', this.state.response3)
+      socket.emit('vote3', this.state.vote3)
+      socket.emit('response4', this.state.response4)
+      socket.emit('vote4', this.state.vote4)
+      socket.emit('response5', this.state.response5)
+      socket.emit('vote5', this.state.vote5)
+    }
     if (this.state.response1 === '' && submitted === 'false') {
       response1 = body
       if (topic === '' || this.state.topic === this.state.name) {
@@ -350,7 +455,7 @@ class App extends Component {
       } else {
         return false
       }
-    }, 3000)
+    }, 1000)
   }
   // async componentDidMount() {
   //   const response = await fetch(server)
@@ -362,10 +467,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="container">
+        <div className="container-fluid">
           <div className="whitet">
             <h1>
-              <Topic getTopic={this.getTopic} />
+              <Topic
+                getTopic={this.getTopic}
+                getTime={this.getTime}
+                reset={this.reset}
+                 />
             </h1>
             <Compose
               nameChange={this.nameChange}
@@ -373,8 +482,6 @@ class App extends Component {
               PlayerOneResponse={this.PlayerOneResponse}
             />
           </div>
-          <div className="whitel" />
-          <div className="whiter" />
           <div className="p1">
             <ResponseList
               displayResponse1={this.displayResponse1}
@@ -393,9 +500,6 @@ class App extends Component {
               VotePlayer4={this.VotePlayer4}
               VotePlayer5={this.VotePlayer5}
             />
-          </div>
-          <div className="whiteb">
-            <h2>{this.state.timestamp}</h2>
           </div>
         </div>
       </div>

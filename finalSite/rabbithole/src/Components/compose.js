@@ -3,7 +3,7 @@ import React from 'react'
 const compose = ({PlayerOneResponse, bodyChange, nameChange}) => {
 
   return (
-    <form className="form">
+    <form className="form col-sm-8">
       <div className="form-group">
         <label htmlFor="subject" className="">
         </label>
@@ -27,7 +27,9 @@ const compose = ({PlayerOneResponse, bodyChange, nameChange}) => {
       </div>
         <div className="form-actions">
           <input value="Submit" className="btn btn-primary text-center" onClick={(e)=>PlayerOneResponse(e)}/>
-        </div>
+      </div>
+      <br></br>
+      <br></br>
     </form>
   )
 }
