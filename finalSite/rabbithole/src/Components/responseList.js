@@ -1,23 +1,39 @@
 import React from 'react'
 //import response from './response'
 const responseList = ({
-  displayResponseOne,
-  displayResponseTwo,
-  VotePlayerOne,
-  VotePlayerTwo
+  displayResponse1,
+  displayResponse2,
+  displayResponse3,
+  displayResponse4,
+  displayResponse5,
+  VotePlayer1,
+  VotePlayer2,
+  VotePlayer3,
+  VotePlayer4,
+  VotePlayer5
 }) => {
   return (
     <div>
-      <div>
-        <h3>{displayResponseOne()}</h3>
+      <div onClick={e => VotePlayer1(e)}>
+        <h3>{displayResponse1()}</h3>
         <br></br>
-        <button onClick={e => VotePlayerOne(e)}>Vote P1</button>
       </div>
-      <div>
-      <h3>{displayResponseTwo()}</h3>
-        <br></br>
-        <button onClick={e => VotePlayerTwo(e)}>Vote P2</button>
-      </div>
+      <div onClick={e => VotePlayer2(e)}>
+      <h3>{displayResponse2()}</h3>
+      <br></br>
+    </div>
+    <div onClick={e => VotePlayer3(e)}>
+    <h3>{displayResponse3()}</h3>
+    <br></br>
+  </div>
+  <div onClick={e => VotePlayer4(e)}>
+  <h3>{displayResponse4()}</h3>
+  <br></br>
+</div>
+<div onClick={e => VotePlayer5(e)}>
+<h3>{displayResponse5()}</h3>
+<br></br>
+</div>
     </div>
   )
 }

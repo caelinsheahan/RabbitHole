@@ -1,6 +1,6 @@
 import React from 'react'
 
-const compose = ({PlayerOneResponse, PlayerTwoResponse, bodyChange, nameChange}) => {
+const compose = ({PlayerOneResponse, bodyChange, nameChange}) => {
 
   return (
     <form className="form">
@@ -25,12 +25,9 @@ const compose = ({PlayerOneResponse, PlayerTwoResponse, bodyChange, nameChange})
           <textarea name="body" id="body" className="form-control"   placeholder="Enter a funny or interesting response" onChange={bodyChange}/>
         </div>
       </div>
-      <div className="form-group">
         <div className="">
-          <input value="PlayerOne" className="btn btn-primary" onClick={(e)=>PlayerOneResponse(e)}/>
-          <input value="PlayerTwo" className="btn btn-primary" onClick={(e)=>PlayerTwoResponse(e)}/>
+          <input value="Submit" className="btn btn-primary" onClick={(e)=>PlayerOneResponse(e)}/>
         </div>
-      </div>
     </form>
   )
 }

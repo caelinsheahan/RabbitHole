@@ -30,21 +30,43 @@ class App extends Component {
     socket.on('response2', (msg) => {
       this.setState({response2: msg})
     })
+    socket.on('response3', (msg) => {
+      this.setState({response3: msg})
+    })
+    socket.on('response4', (msg) => {
+      this.setState({response4: msg})
+    })
+    socket.on('response5', (msg) => {
+      this.setState({response5: msg})
+    })
       socket.on('vote1', (msg) => {
         this.setState({vote1: msg})
       })
-
       socket.on('vote2', (msg) => {
           this.setState({vote2: msg})
       })
-
+      socket.on('vote3', (msg) => {
+          this.setState({vote3: msg})
+      })
+      socket.on('vote4', (msg) => {
+          this.setState({vote4: msg})
+      })
+      socket.on('vote5', (msg) => {
+          this.setState({vote5: msg})
+      })
     this.state = {
       name: '',
       body: '',
       response1: '',
       response2: '',
+      response3: '',
+      response4: '',
+      response5: '',
       vote1: 0,
       vote2: 0,
+      vote3: 0,
+      vote4: 0,
+      vote5: 0,
       timestamp: '',
       topic: ''
     }
@@ -53,14 +75,44 @@ class App extends Component {
   getTopic = () => {
     return this.state.topic
   }
-  displayResponseOne = () => {
+  displayResponse1 = () => {
+    if(this.state.response1 === '') {
+      return false
+    }
     return (
-      'Player One: ' + this.state.response1 + '  Votes: ' + this.state.vote1
+      this.state.response1 + '  Votes: ' + this.state.vote1
     )
   }
-  displayResponseTwo = () => {
+  displayResponse2 = () => {
+    if(this.state.response2 === '') {
+      return false
+    }
     return (
-      'Player Two: ' + this.state.response2 + '  Votes: ' + this.state.vote2
+      this.state.response2 + '  Votes: ' + this.state.vote2
+    )
+  }
+  displayResponse3 = () => {
+    if(this.state.response3 === '') {
+      return false
+    }
+    return (
+      this.state.response3 + '  Votes: ' + this.state.vote3
+    )
+  }
+  displayResponse4 = () => {
+    if(this.state.response4 === '') {
+      return false
+    }
+    return (
+      this.state.response4 + '  Votes: ' + this.state.vote4
+    )
+  }
+  displayResponse5 = () => {
+    if(this.state.response5 === '') {
+      return false
+    }
+    return (
+      this.state.response5 + '  Votes: ' + this.state.vote5
     )
   }
   nameChange = e => {
@@ -69,47 +121,82 @@ class App extends Component {
 
   PlayerOneResponse = () => {
     let response1 = this.state.response1.slice(0)
+    let response2 = this.state.response2.slice(0)
+    let response3 = this.state.response3.slice(0)
+    let response4 = this.state.response4.slice(0)
+    let response5 = this.state.response5.slice(0)
     const body = this.state.body.slice(0)
     const topic = this.state.name.slice(0)
-    response1 = body
-    if (topic === '' || this.state.topic === this.state.name) {
-      socket.emit('response1', body)
-      return false
+    if(this.state.response1 === '') {
+      response1 = body
+      if (topic === '' || this.state.topic === this.state.name) {
+        socket.emit('response1', body)
+        return false
     }
+    else {}
     socket.emit('response1', body)
     socket.emit('topic', topic)
-  }
-  PlayerTwoResponse = resp => {
-    let response2 = this.state.response2.slice(0)
-    const body = this.state.body.slice(0)
-    const topic = this.state.name.slice(0)
-    response2 = body
-    if (topic === '' || this.state.topic === this.state.name) {
-      socket.emit('response2', body)
-      return false
+    return false
     }
+    if(this.state.response2 === '') {
+      response2 = body
+      if (topic === '' || this.state.topic === this.state.name) {
+        socket.emit('response2', body)
+        return false
+    }
+    else {}
     socket.emit('response2', body)
     socket.emit('topic', topic)
+    return false
+    }
+    if(this.state.response3 === '') {
+      response3 = body
+      if (topic === '' || this.state.topic === this.state.name) {
+        socket.emit('response3', body)
+        return false
+    }
+    else {}
+    socket.emit('response3', body)
+    socket.emit('topic', topic)
+    return false
+    }
+    if(this.state.response4 === '') {
+      response4 = body
+      if (topic === '' || this.state.topic === this.state.name) {
+        socket.emit('response4', body)
+        return false
+    }
+    else {}
+    socket.emit('response4', body)
+    socket.emit('topic', topic)
+    return false
+    }
+    if(this.state.response5 === '') {
+      response2 = body
+      if (topic === '' || this.state.topic === this.state.name) {
+        socket.emit('response5', body)
+        return false
+    }
+    else {}
+    socket.emit('response5', body)
+    socket.emit('topic', topic)
+    return false
+    }
   }
-  PlayerOneVoteCount = () => {
-    let votes1 = this.state.votes.slice(0)
-    // socket.on('vote1', function(msg) {
-    // votes[0] += msg
-    // })
-    return votes1
-  }
-  PlayerTwoVoteCount = () => {
-    let votes2 = this.state.votes.slice(0)
-    // socket.on('vote2', function(msg) {
-    // votes[1] += msg
-    // })
-    return votes2
-  }
-  VotePlayerOne = () => {
+  VotePlayer1 = () => {
   socket.emit('vote1', this.state.vote1 + 1)
   }
-  VotePlayerTwo = () => {
+  VotePlayer2 = () => {
     socket.emit('vote2', this.state.vote2 + 1)
+  }
+  VotePlayer3 = () => {
+    socket.emit('vote3', this.state.vote3 + 1)
+  }
+  VotePlayer4 = () => {
+    socket.emit('vote4', this.state.vote4 + 1)
+  }
+  VotePlayer5 = () => {
+    socket.emit('vote5', this.state.vote5 + 1)
   }
   bodyChange = e => {
     console.log('bodychange')
@@ -134,17 +221,22 @@ class App extends Component {
               nameChange={this.nameChange}
               bodyChange={this.bodyChange}
               PlayerOneResponse={this.PlayerOneResponse}
-              PlayerTwoResponse={this.PlayerTwoResponse}
             />
           </div>
           <div className="whitel" />
           <div className="whiter" />
           <div className="p1">
             <ResponseList
-              displayResponseOne={this.displayResponseOne}
-              displayResponseTwo={this.displayResponseTwo}
-              VotePlayerOne={this.VotePlayerOne}
-              VotePlayerTwo={this.VotePlayerTwo}
+              displayResponse1={this.displayResponse1}
+              displayResponse2={this.displayResponse2}
+              displayResponse3={this.displayResponse3}
+              displayResponse4={this.displayResponse4}
+              displayResponse5={this.displayResponse5}
+              VotePlayer1={this.VotePlayer1}
+              VotePlayer2={this.VotePlayer2}
+              VotePlayer3={this.VotePlayer3}
+              VotePlayer4={this.VotePlayer4}
+              VotePlayer5={this.VotePlayer5}
             />
           </div>
           <div className="whiteb">
