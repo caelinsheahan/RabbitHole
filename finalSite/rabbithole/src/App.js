@@ -174,6 +174,7 @@ class App extends Component {
       response1 = body
       if (topic === '' || this.state.topic === this.state.name) {
         this.setState({submitted: 'true'})
+        socket.emit('topic', this.state.topic)
         socket.emit('response1', body)
         return false
     }
@@ -187,11 +188,14 @@ class App extends Component {
       response2 = body
       if (topic === '' || this.state.topic === this.state.name) {
         this.setState({submitted: 'true'})
+        socket.emit('topic', this.state.topic)
+        socket.emit('response1', this.state.response1)
         socket.emit('response2', body)
         return false
     }
     else {}
     this.setState({submitted: 'true'})
+    socket.emit('response1', this.state.response1)
     socket.emit('response2', body)
     socket.emit('topic', topic)
     return false
@@ -200,11 +204,16 @@ class App extends Component {
       response3 = body
       if (topic === '' || this.state.topic === this.state.name) {
         this.setState({submitted: 'true'})
+        socket.emit('topic', this.state.topic)
+        socket.emit('response1', this.state.response1)
+        socket.emit('response2', this.state.response2)
         socket.emit('response3', body)
         return false
     }
     else {}
     this.setState({submitted: 'true'})
+    socket.emit('response1', this.state.response1)
+    socket.emit('response2', this.state.response2)
     socket.emit('response3', body)
     socket.emit('topic', topic)
     return false
@@ -213,11 +222,18 @@ class App extends Component {
       response4 = body
       if (topic === '' || this.state.topic === this.state.name) {
         this.setState({submitted: 'true'})
+        socket.emit('topic', this.state.topic)
+        socket.emit('response1', this.state.response1)
+        socket.emit('response2', this.state.response2)
+        socket.emit('response3', this.state.response3)
         socket.emit('response4', body)
         return false
     }
     else {}
     this.setState({submitted: 'true'})
+    socket.emit('response1', this.state.response1)
+    socket.emit('response2', this.state.response2)
+    socket.emit('response3', this.state.response3)
     socket.emit('response4', body)
     socket.emit('topic', topic)
     return false
@@ -226,11 +242,20 @@ class App extends Component {
       response2 = body
       if (topic === '' || this.state.topic === this.state.name) {
         this.setState({submitted: 'true'})
+        socket.emit('topic', this.state.topic)
+        socket.emit('response1', this.state.response1)
+        socket.emit('response2', this.state.response2)
+        socket.emit('response3', this.state.response3)
+        socket.emit('response4', this.state.response4)
         socket.emit('response5', body)
         return false
     }
     else {}
     this.setState({submitted: 'true'})
+    socket.emit('response1', this.state.response1)
+    socket.emit('response2', this.state.response2)
+    socket.emit('response3', this.state.response3)
+    socket.emit('response4', this.state.response4)
     socket.emit('response5', body)
     socket.emit('topic', topic)
     return false
@@ -280,6 +305,21 @@ class App extends Component {
     console.log('bodychange')
     this.setState({ body: e.target.value })
   }
+  componentDidMount() {
+      setInterval(() => {
+        if(this.state.response5 !== '' && this.state.submitted === 'true') {
+          socket.emit('topic', this.state.topic)
+          socket.emit('response1', this.state.response1)
+          socket.emit('response2', this.state.response2)
+          socket.emit('response3', this.state.response3)
+          socket.emit('response4', this.state.response4)
+          socket.emit('response5', this.state.response5)
+        }
+        else {
+          return false
+        }
+      }, 3000)
+ }
   // async componentDidMount() {
   //   const response = await fetch(server)
   //   const json = await response.json()
