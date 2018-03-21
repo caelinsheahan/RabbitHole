@@ -93,16 +93,10 @@ class App extends Component {
   }
   PlayerOneVoteCount = () => {
     let votes1 = this.state.votes.slice(0)
-    // socket.on('vote1', function(msg) {
-    // votes[0] += msg
-    // })
     return votes1
   }
   PlayerTwoVoteCount = () => {
     let votes2 = this.state.votes.slice(0)
-    // socket.on('vote2', function(msg) {
-    // votes[1] += msg
-    // })
     return votes2
   }
   VotePlayerOne = () => {
