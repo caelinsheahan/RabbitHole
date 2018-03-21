@@ -10,30 +10,65 @@ const responseList = ({
   VotePlayer2,
   VotePlayer3,
   VotePlayer4,
-  VotePlayer5
+  VotePlayer5,
+  displayVote1,
+  displayVote2,
+  displayVote3,
+  displayVote4,
+  displayVote5
 }) => {
   return (
     <div>
-      <div onClick={e => VotePlayer1(e)}>
-        <h3>{displayResponse1()}</h3>
-        <br></br>
+      <div class="row">
+        <div class="col-sm-4">
+          <div className="card" onClick={e => VotePlayer1(e)}>
+            <div className="card-body">
+              <h5 className="card-title">{displayVote1()}</h5>
+              <p className="card-text">{displayResponse1()}</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div onClick={e => VotePlayer2(e)}>
-      <h3>{displayResponse2()}</h3>
-      <br></br>
-    </div>
-    <div onClick={e => VotePlayer3(e)}>
-    <h3>{displayResponse3()}</h3>
-    <br></br>
-  </div>
-  <div onClick={e => VotePlayer4(e)}>
-  <h3>{displayResponse4()}</h3>
-  <br></br>
-</div>
-<div onClick={e => VotePlayer5(e)}>
-<h3>{displayResponse5()}</h3>
-<br></br>
-</div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div className="card" onClick={e => VotePlayer2(e)}>
+            <div className="card-body">
+              <h5 className="card-title">{displayVote2()}</h5>
+              <p className="card-text">{displayResponse2()}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div className="card" onClick={e => VotePlayer3(e)}>
+            <div className="card-body">
+              <h5 className="card-title">{displayVote3()}</h5>
+              <p className="card-text">{displayResponse3()}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div className="card" onClick={e => VotePlayer4(e)}>
+            <div className="card-body">
+              <h5 className="card-title">{displayVote4()}</h5>
+              <p className="card-text">{displayResponse4()}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div className="card" onClick={e => VotePlayer5(e)}>
+            <div className="card-body">
+              <h5 className="card-title">{displayVote5()}</h5>
+              <p className="card-text">{displayResponse5()}</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

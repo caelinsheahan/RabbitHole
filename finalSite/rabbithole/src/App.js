@@ -82,7 +82,7 @@ class App extends Component {
       return false
     }
     return (
-      this.state.response1 + '  Votes: ' + this.state.vote1
+      this.state.response1
     )
   }
   displayResponse2 = () => {
@@ -90,7 +90,7 @@ class App extends Component {
       return false
     }
     return (
-      this.state.response2 + '  Votes: ' + this.state.vote2
+      this.state.response2
     )
   }
   displayResponse3 = () => {
@@ -98,7 +98,7 @@ class App extends Component {
       return false
     }
     return (
-      this.state.response3 + '  Votes: ' + this.state.vote3
+      this.state.response3
     )
   }
   displayResponse4 = () => {
@@ -106,7 +106,7 @@ class App extends Component {
       return false
     }
     return (
-      this.state.response4 + '  Votes: ' + this.state.vote4
+      this.state.response4
     )
   }
   displayResponse5 = () => {
@@ -114,7 +114,47 @@ class App extends Component {
       return false
     }
     return (
-      this.state.response5 + '  Votes: ' + this.state.vote5
+      this.state.response5
+    )
+  }
+  displayVote1 = () => {
+    if(this.state.vote1 === 0) {
+      return false
+    }
+    return (
+      'Dug ' + this.state.vote1 + ' feet deeper!'
+    )
+  }
+  displayVote2 = () => {
+    if(this.state.vote2 === 0) {
+      return false
+    }
+    return (
+    'Dug ' + this.state.vote2 + ' feet deeper!'
+    )
+  }
+  displayVote3 = () => {
+    if(this.state.vote3 === 0) {
+      return false
+    }
+    return (
+      'Dug ' + this.state.vote3 + ' feet deeper!'
+    )
+  }
+  displayVote4 = () => {
+    if(this.state.vote4 === 0) {
+      return false
+    }
+    return (
+      'Dug ' + this.state.vote4 + ' feet deeper!'
+    )
+  }
+  displayVote5 = () => {
+    if(this.state.vote5 === 0) {
+      return false
+    }
+    return (
+      'Dug ' + this.state.vote5 + ' feet deeper!'
     )
   }
   nameChange = e => {
@@ -270,6 +310,11 @@ class App extends Component {
               displayResponse3={this.displayResponse3}
               displayResponse4={this.displayResponse4}
               displayResponse5={this.displayResponse5}
+              displayVote1={this.displayVote1}
+              displayVote2={this.displayVote2}
+              displayVote3={this.displayVote3}
+              displayVote4={this.displayVote4}
+              displayVote5={this.displayVote5}
               VotePlayer1={this.VotePlayer1}
               VotePlayer2={this.VotePlayer2}
               VotePlayer3={this.VotePlayer3}
