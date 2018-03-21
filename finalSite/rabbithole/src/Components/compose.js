@@ -5,7 +5,7 @@ const compose = ({PlayerOneResponse, bodyChange, nameChange}) => {
   return (
     <form className="form col-sm-8">
       <div className="form-group">
-        <label htmlFor="subject" className="">
+        <label htmlFor="subject">
         </label>
         <div className="form-actions">
           <input
@@ -19,14 +19,14 @@ const compose = ({PlayerOneResponse, bodyChange, nameChange}) => {
         </div>
       </div>
       <div className="form-group">
-        <label for="body" className="">
+        <label for="body">
         </label>
         <div className="form-actions">
           <textarea name="body" id="body" className="form-control"   placeholder="Enter a funny or interesting response" onChange={bodyChange}/>
         </div>
       </div>
         <div className="form-actions">
-          <input value="Submit" className="btn btn-primary text-center" onClick={(e)=>PlayerOneResponse(e)}/>
+          <input value="Submit" readOnly className="btn btn-primary-outline text-center" onClick={(e)=>PlayerOneResponse(e)}/>
       </div>
       <br></br>
       <br></br>
