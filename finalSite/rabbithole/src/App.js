@@ -68,7 +68,9 @@ class App extends Component {
       vote4: 0,
       vote5: 0,
       timestamp: '',
-      topic: ''
+      topic: '',
+      submitted: 'false',
+      voted: 'false'
     }
   }
 
@@ -125,77 +127,113 @@ class App extends Component {
     let response3 = this.state.response3.slice(0)
     let response4 = this.state.response4.slice(0)
     let response5 = this.state.response5.slice(0)
+    let submitted = this.state.submitted.slice(0)
     const body = this.state.body.slice(0)
     const topic = this.state.name.slice(0)
-    if(this.state.response1 === '') {
+    if(this.state.response1 === '' && submitted === 'false' ) {
       response1 = body
       if (topic === '' || this.state.topic === this.state.name) {
+        this.setState({submitted: 'true'})
         socket.emit('response1', body)
         return false
     }
     else {}
+    this.setState({submitted: 'true'})
     socket.emit('response1', body)
     socket.emit('topic', topic)
     return false
     }
-    if(this.state.response2 === '') {
+    if(this.state.response2 === '' && submitted === 'false' ) {
       response2 = body
       if (topic === '' || this.state.topic === this.state.name) {
+        this.setState({submitted: 'true'})
         socket.emit('response2', body)
         return false
     }
     else {}
+    this.setState({submitted: 'true'})
     socket.emit('response2', body)
     socket.emit('topic', topic)
     return false
     }
-    if(this.state.response3 === '') {
+    if(this.state.response3 === '' && submitted === 'false' ) {
       response3 = body
       if (topic === '' || this.state.topic === this.state.name) {
+        this.setState({submitted: 'true'})
         socket.emit('response3', body)
         return false
     }
     else {}
+    this.setState({submitted: 'true'})
     socket.emit('response3', body)
     socket.emit('topic', topic)
     return false
     }
-    if(this.state.response4 === '') {
+    if(this.state.response4 === '' && submitted === 'false' ) {
       response4 = body
       if (topic === '' || this.state.topic === this.state.name) {
+        this.setState({submitted: 'true'})
         socket.emit('response4', body)
         return false
     }
     else {}
+    this.setState({submitted: 'true'})
     socket.emit('response4', body)
     socket.emit('topic', topic)
     return false
     }
-    if(this.state.response5 === '') {
+    if(this.state.response5 === '' && submitted === 'false' ) {
       response2 = body
       if (topic === '' || this.state.topic === this.state.name) {
+        this.setState({submitted: 'true'})
         socket.emit('response5', body)
         return false
     }
     else {}
+    this.setState({submitted: 'true'})
     socket.emit('response5', body)
     socket.emit('topic', topic)
     return false
     }
   }
   VotePlayer1 = () => {
+  let voted = this.state.voted.slice(0)
+  if(voted === 'true') {
+    return false
+  }
+  this.setState({voted: 'true'})
   socket.emit('vote1', this.state.vote1 + 1)
   }
   VotePlayer2 = () => {
+    let voted = this.state.voted.slice(0)
+    if(voted === 'true') {
+      return false
+    }
+    this.setState({voted: 'true'})
     socket.emit('vote2', this.state.vote2 + 1)
   }
   VotePlayer3 = () => {
+    let voted = this.state.voted.slice(0)
+    if(voted === 'true') {
+      return false
+    }
+    this.setState({voted: 'true'})
     socket.emit('vote3', this.state.vote3 + 1)
   }
   VotePlayer4 = () => {
+    let voted = this.state.voted.slice(0)
+    if(voted === 'true') {
+      return false
+    }
+    this.setState({voted: 'true'})
     socket.emit('vote4', this.state.vote4 + 1)
   }
   VotePlayer5 = () => {
+    let voted = this.state.voted.slice(0)
+    if(voted === 'true') {
+      return false
+    }
+    this.setState({voted: 'true'})
     socket.emit('vote5', this.state.vote5 + 1)
   }
   bodyChange = e => {
