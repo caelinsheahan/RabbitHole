@@ -3,6 +3,7 @@ import React from 'react'
 const compose = ({PlayerOneResponse, bodyChange, nameChange}) => {
 
   return (
+    <div class="dropdown-menu">
     <form className="form col-sm-8">
       <div className="form-group">
         <label htmlFor="subject">
@@ -31,6 +32,7 @@ const compose = ({PlayerOneResponse, bodyChange, nameChange}) => {
       <br></br>
       <br></br>
     </form>
+    </div>
   )
 }
 export default compose
